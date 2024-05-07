@@ -12,8 +12,10 @@ const addValue = () => {
     SetCounter(counter +0)
   }
   else{
-
-    SetCounter(counter + 1)
+    SetCounter((prevousCount) => prevousCount +1)
+    SetCounter((prevousCount) => prevousCount +1)
+    SetCounter((prevousCount) => prevousCount +1)
+    SetCounter((prevousCount) => prevousCount +1)
   }
 }
 const removevalue = () => {
