@@ -15,7 +15,11 @@ function App() {
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXabcdefghijklmnopqrstuvwxyz"; // Base string with lowercase and uppercase letters
   
     // Conditionally add numbers and special characters to the string
-    if (numberAlllowd) str += "0123456789";
+    if (numberAlllowd) {
+      // Ensure at least one number in the password
+      pass += Math.floor(Math.random() * 10); // Append a random number (0-9)
+      str += "0123456789";
+    }
     if (charAllowed) str += "!@#$%^&*{}~";
   
     // Loop to generate the password
