@@ -1,12 +1,13 @@
 import React, { useId } from 'react'
 
+
 function InputBox({
     label,
     amount,
     onAmountChange,
     onCurrencyChange,
-    currencyOption=[],
-    selectCurrency = "usd",
+    currencyOptions= [],
+    selectCurrency = "",
     amountDisable = false,
     currencyDisable = false,
     className = "",
@@ -38,7 +39,7 @@ function InputBox({
                     disabled={currencyDisable}
                 >
                     
-                        {currencyOption.map((currency) => (
+                        {currencyOptions.map((currency) => (
                             <option key={currency} value={currency}>
                             {currency}
                             </option>

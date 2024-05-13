@@ -7,7 +7,7 @@ function App() {
 
   const [amount, setAmount] = useState(0)
   const [from, setFrom] = useState("usd")
-  const [to, setTo] = useState("inr")
+  const [to, setTo] = useState("npr")
   const [convertedAmount, setConvertedAmount] = useState(0)
 
   const currencyInfo = useCurrencyInfo(from)
@@ -15,16 +15,27 @@ function App() {
   const options = Object.keys(currencyInfo)
 
   const swap = () => {
+
+    const newConvertedAmount = convertedAmount < 0 ? 0 : convertedAmount;
     setFrom(to)
     setTo(from)
-    setConvertedAmount(amount)
-    setAmount(convertedAmount)
+    setConvertedAmount((amount) =>{
+      amount <= 0 ? 0 : amount
+    })
+    setAmount(newConvertedAmount)
   }
   
   const convert = () => {
-  const newConvertedAmount =  setConvertedAmount(amount * currencyInfo[to])
+  const newConvertedAmount =  amount * currencyInfo[to];
     setConvertedAmount(newConvertedAmount)
   }
+  const handleAmountChange = (value) => {
+    if (value === '') {
+      setAmount('');
+    } else {
+      setAmount(value);
+    }
+  };
 
   return (
     <div
@@ -47,9 +58,9 @@ function App() {
                             label="From"
                             amount={amount}
                             currencyOptions={options}
-                            onCurrencyChange={(currency) => setAmount(amount)}
+                            onCurrencyChange={(currency) => setFrom(currency)}
                             selectCurrency={from}
-                            onAmountChange={(amount) => setAmount(amount)}
+                            onAmountChange={handleAmountChange}
                         />
                     </div>
                     <div className="relative w-full h-0.5">
